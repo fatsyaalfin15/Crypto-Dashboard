@@ -1,4 +1,4 @@
-# Ledger Watch
+# Crypto Watch
 
 Dashboard pasar kripto real-time dibangun dengan React + Vite, menampilkan data
 langsung dari [CoinGecko API](https://www.coingecko.com/en/api) (gratis, tanpa
