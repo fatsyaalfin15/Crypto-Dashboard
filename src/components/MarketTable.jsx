@@ -13,11 +13,11 @@ export default function MarketTable({ coins, onSelect }) {
           <tr>
             <th className="col-rank">#</th>
             <th className="col-name">Koin</th>
-            <th className="col-num">Harga</th>
-            <th className="col-num">1j</th>
-            <th className="col-num">24j</th>
-            <th className="col-num">7h</th>
-            <th className="col-num">Kap. Pasar</th>
+            <th className="col-num col-price">Harga</th>
+            <th className="col-num col-1h">1j</th>
+            <th className="col-num col-24h">24j</th>
+            <th className="col-num col-7d">7h</th>
+            <th className="col-num col-cap">Kap. Pasar</th>
             <th className="col-chart">7 Hari</th>
           </tr>
         </thead>
@@ -48,17 +48,28 @@ export default function MarketTable({ coins, onSelect }) {
                     </span>
                   </div>
                 </td>
-                <td className="col-num mono">{formatUsd(c.current_price)}</td>
-                <td className={`col-num mono ${change1h >= 0 ? 'up' : 'down'}`}>
+                <td className="col-num col-price mono">
+                  {formatUsd(c.current_price)}
+                </td>
+                <td
+                  className={`col-num col-1h mono ${change1h >= 0 ? 'up' : 'down'}`}
+                  data-label="1j"
+                >
                   {formatPercent(change1h)}
                 </td>
-                <td className={`col-num mono ${change24h >= 0 ? 'up' : 'down'}`}>
+                <td
+                  className={`col-num col-24h mono ${change24h >= 0 ? 'up' : 'down'}`}
+                  data-label="24j"
+                >
                   {formatPercent(change24h)}
                 </td>
-                <td className={`col-num mono ${change7d >= 0 ? 'up' : 'down'}`}>
+                <td
+                  className={`col-num col-7d mono ${change7d >= 0 ? 'up' : 'down'}`}
+                  data-label="7h"
+                >
                   {formatPercent(change7d)}
                 </td>
-                <td className="col-num mono">
+                <td className="col-num col-cap mono">
                   {formatCompact(c.market_cap)}
                 </td>
                 <td className="col-chart">
