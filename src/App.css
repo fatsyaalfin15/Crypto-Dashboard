@@ -190,65 +190,98 @@
 .error-banner { color: var(--alert); }
 
 /* ---------- Table ---------- */
+
+/* ---------- Table ---------- */
 .table-wrap {
+  width: 100%;
   border: 1px solid var(--line);
   overflow-x: auto;
 }
 
 .market-table {
   width: 100%;
+  min-width: 850px;
+  table-layout: fixed;
   border-collapse: collapse;
   font-size: 0.85rem;
 }
 
-.market-table thead th {
-  text-align: right;
-  font-weight: 500;
-  font-size: 0.72rem;
-  color: var(--text-faint);
-  padding: 0.6rem 0.9rem;
-  border-bottom: 1px solid var(--line);
-  background: var(--panel);
-  position: sticky;
-  top: 0;
-}
+/* Pembagian lebar kolom */
+.market-table .col-rank  { width: 48px; }
+.market-table .col-name  { width: 25%; }
+.market-table .col-price { width: 15%; }
+.market-table .col-1h    { width: 8%; }
+.market-table .col-24h   { width: 8%; }
+.market-table .col-7d    { width: 8%; }
+.market-table .col-cap   { width: 14%; }
+.market-table .col-chart { width: 16%; }
 
-.market-table .col-rank, .market-table .col-name { text-align: left; }
-
-.market-row {
-  cursor: pointer;
-  border-bottom: 1px solid var(--line);
-}
-.market-row:hover { background: var(--panel-raised); }
-.market-row:last-child { border-bottom: none; }
-
+/* Jarak isi sel lebih rapat */
+.market-table th,
 .market-table td {
-  padding: 0.55rem 0.9rem;
+  padding: 0.7rem 0.65rem;
+  border-bottom: 1px solid var(--line);
   vertical-align: middle;
 }
 
-.col-rank { color: var(--text-faint); width: 2.5rem; }
-
-.col-name {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
+/* Kolom nomor */
+.market-table .col-rank {
+  color: var(--text-faint);
+  text-align: center;
   white-space: nowrap;
 }
 
-.col-name img { border-radius: 50%; flex-shrink: 0; }
+/* Penting: jangan gunakan display:flex pada sel tabel */
+.market-table .col-name {
+  display: table-cell;
+  text-align: left;
+  white-space: nowrap;
+}
 
-.coin-name { display: block; font-weight: 500; }
-.coin-symbol { display: block; font-size: 0.72rem; color: var(--text-faint); }
+.col-name img {
+  width: 22px;
+  height: 22px;
+  margin-right: 0.45rem;
+  vertical-align: middle;
+  border-radius: 50%;
+}
 
-.col-num { text-align: right; white-space: nowrap; }
-.col-chart { text-align: right; }
+.coin-name {
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: 500;
+}
+
+.coin-symbol {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-faint);
+}
+
+.col-num {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.market-table th.col-chart,
+.market-table td.col-chart {
+  text-align: center;
+}
 
 .sparkline-empty {
   font-size: 0.7rem;
   color: var(--text-faint);
-  text-align: right;
+  text-align: center;
 }
+
+
+.market-table th.col-rank,
+.market-table td.col-rank {
+  padding-left: 0.35rem;
+  padding-right: 0.35rem;
+}
+
 
 /* ---------- Footer ---------- */
 .footer {
