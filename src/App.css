@@ -190,8 +190,6 @@
 .error-banner { color: var(--alert); }
 
 /* ---------- Table ---------- */
-
-/* ---------- Table ---------- */
 .table-wrap {
   width: 100%;
   border: 1px solid var(--line);
@@ -201,47 +199,40 @@
 .market-table {
   width: 100%;
   min-width: 850px;
-  table-layout: fixed;
+  table-layout: fixed; /* Mengunci lebar sesuai persentase */
   border-collapse: collapse;
   font-size: 0.85rem;
 }
 
-/* Pembagian lebar kolom */
-.market-table .col-rank  { width: 48px; }
-.market-table .col-name  { width: 25%; }
-.market-table .col-price { width: 15%; }
-.market-table .col-1h    { width: 8%; }
-.market-table .col-24h   { width: 8%; }
-.market-table .col-7d    { width: 8%; }
-.market-table .col-cap   { width: 14%; }
-.market-table .col-chart { width: 16%; }
-
-/* Jarak isi sel lebih rapat */
+/* Pastikan TH dan TD memiliki padding dan alignment seragam */
 .market-table th,
 .market-table td {
-  padding: 0.7rem 0.65rem;
+  padding: 0.75rem 0.8rem;
   border-bottom: 1px solid var(--line);
   vertical-align: middle;
-}
-
-/* Kolom nomor */
-.market-table .col-rank {
-  color: var(--text-faint);
-  text-align: center;
-  white-space: nowrap;
-}
-
-/* Penting: jangan gunakan display:flex pada sel tabel */
-.market-table .col-name {
   display: table-cell;
-  text-align: left;
+}
+
+.market-table th {
+  color: var(--text-faint);
+  font-weight: 500;
   white-space: nowrap;
 }
+
+/* Pembagian Lebar Kolom & Perataan (Berlaku pada TH dan TD agar sejajar presisi) */
+.market-table th.col-rank,  .market-table td.col-rank  { width: 5%; text-align: center; }
+.market-table th.col-name,  .market-table td.col-name  { width: 22%; text-align: left; }
+.market-table th.col-price, .market-table td.col-price { width: 15%; text-align: right; }
+.market-table th.col-1h,    .market-table td.col-1h    { width: 10%; text-align: right; }
+.market-table th.col-24h,   .market-table td.col-24h   { width: 10%; text-align: right; }
+.market-table th.col-7d,    .market-table td.col-7d    { width: 10%; text-align: right; }
+.market-table th.col-cap,   .market-table td.col-cap   { width: 14%; text-align: right; }
+.market-table th.col-chart, .market-table td.col-chart { width: 14%; text-align: center; }
 
 .col-name img {
   width: 22px;
   height: 22px;
-  margin-right: 0.45rem;
+  margin-right: 0.5rem;
   vertical-align: middle;
   border-radius: 50%;
 }
@@ -259,14 +250,8 @@
 }
 
 .col-num {
-  text-align: right;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
-}
-
-.market-table th.col-chart,
-.market-table td.col-chart {
-  text-align: center;
 }
 
 .sparkline-empty {
@@ -274,14 +259,6 @@
   color: var(--text-faint);
   text-align: center;
 }
-
-
-.market-table th.col-rank,
-.market-table td.col-rank {
-  padding-left: 0.35rem;
-  padding-right: 0.35rem;
-}
-
 
 /* ---------- Footer ---------- */
 .footer {
@@ -477,39 +454,39 @@
   .sort-group { width: 100%; }
   .sort-btn { flex: 1; padding: 0.65rem 0.4rem; font-size: 0.7rem; text-align: center; }
 
-    /* --- Market table: stays a real table, just drops lower-priority
-     columns so what remains lines up cleanly instead of wrapping --- */
-  .table-wrap { border: 1px solid var(--line); overflow-x: auto; }
-  .market-table { font-size: 0.78rem; }
+  /* --- Market table: Tampilan HP (Mobile) --- */
+  .table-wrap { 
+    border: 1px solid var(--line); 
+    overflow-x: auto; 
+  }
+  
+  .market-table { 
+    font-size: 0.78rem; 
+    min-width: 100%; /* Reset min-width 850px agar muat di HP */
+  }
 
   .market-table th,
-  .market-table td { padding: 0.55rem 0.5rem; }
+  .market-table td { 
+    padding: 0.6rem 0.4rem; 
+  }
 
-  /* Hide: 1h change, market cap, sparkline. Rank, name, price, 24h, 7d stay. */
-  .col-1h, .col-cap, .col-chart { display: none; }
+  /* Sembunyikan kolom prioritas rendah di HP (baik di header maupun isi) */
+  .market-table th.col-1h, .market-table td.col-1h,
+  .market-table th.col-cap, .market-table td.col-cap,
+  .market-table th.col-chart, .market-table td.col-chart { 
+    display: none; 
+  }
 
-  .col-rank { width: 1.6rem; font-size: 0.7rem; }
+  /* Penyesuaian persentase sisa kolom agar proporsional dan rapi */
+  .market-table th.col-rank,  .market-table td.col-rank  { width: 8%; font-size: 0.7rem; }
+  .market-table th.col-name,  .market-table td.col-name  { width: auto; text-align: left; }
+  .market-table th.col-price, .market-table td.col-price { width: 28%; font-weight: 600; text-align: right; }
+  .market-table th.col-24h,   .market-table td.col-24h   { width: 17%; text-align: right; }
+  .market-table th.col-7d,    .market-table td.col-7d    { width: 17%; text-align: right; }
+  
   .col-name img { width: 20px; height: 20px; }
   .coin-name { font-size: 0.82rem; }
   .coin-symbol { font-size: 0.66rem; }
-  .col-price { font-weight: 600; }
-  
-  /* Secondary row: just 24h and 7d changes, as small labeled chips */
-  .col-1h, .col-cap, .col-chart { display: none; }
-
-  .col-24h, .col-7d {
-    order: 4;
-    font-size: 0.74rem;
-    background: var(--panel-raised);
-    border: 1px solid var(--line);
-    padding: 0.2rem 0.5rem;
-  }
-  .col-24h::before, .col-7d::before {
-    content: attr(data-label) ' ';
-    color: var(--text-faint);
-  }
-  .col-24h { order: 4; }
-  .col-7d { order: 5; }
 
   .footer { padding: 1rem; font-size: 0.68rem; }
 
