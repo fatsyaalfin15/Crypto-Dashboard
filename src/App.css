@@ -444,53 +444,23 @@
   .sort-group { width: 100%; }
   .sort-btn { flex: 1; padding: 0.65rem 0.4rem; font-size: 0.7rem; text-align: center; }
 
-  /* --- Market table -> card list --- */
-  .table-wrap { border: none; overflow-x: visible; }
-  .market-table { display: block; }
-  .market-table thead { display: none; }
-  .market-table tbody { display: block; }
+    /* --- Market table: stays a real table, just drops lower-priority
+     columns so what remains lines up cleanly instead of wrapping --- */
+  .table-wrap { border: 1px solid var(--line); overflow-x: auto; }
+  .market-table { font-size: 0.78rem; }
 
-  .market-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.3rem 0.5rem;
-    padding: 0.85rem 0.25rem;
-    border-bottom: 1px solid var(--line);
-    min-height: 44px;
-  }
+  .market-table th,
+  .market-table td { padding: 0.55rem 0.5rem; }
 
-  .market-table td {
-    display: block;
-    padding: 0;
-    border: none;
-  }
+  /* Hide: 1h change, market cap, sparkline. Rank, name, price, 24h, 7d stay. */
+  .col-1h, .col-cap, .col-chart { display: none; }
 
-  .col-rank {
-    order: 0;
-    width: 1.75rem;
-    font-size: 0.72rem;
-    flex-shrink: 0;
-  }
-
-  .col-name {
-    order: 1;
-    display: flex;
-    align-items: center;
-    gap: 0.55rem;
-    flex: 1 1 auto;
-    min-width: 0;
-  }
-  .col-name img { width: 24px; height: 24px; }
-  .coin-name { font-size: 0.92rem; }
-
-  .col-price {
-    order: 2;
-    font-size: 0.92rem;
-    font-weight: 600;
-    flex-shrink: 0;
-  }
-
+  .col-rank { width: 1.6rem; font-size: 0.7rem; }
+  .col-name img { width: 20px; height: 20px; }
+  .coin-name { font-size: 0.82rem; }
+  .coin-symbol { font-size: 0.66rem; }
+  .col-price { font-weight: 600; }
+  
   /* Secondary row: just 24h and 7d changes, as small labeled chips */
   .col-1h, .col-cap, .col-chart { display: none; }
 
